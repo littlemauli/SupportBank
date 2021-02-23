@@ -1,0 +1,16 @@
+C:\training\SupportBank\obj\Debug\net5.0\SupportBank.csprojAssemblyReference.cache
+C:\training\SupportBank\obj\Debug\net5.0\SupportBank.GeneratedMSBuildEditorConfig.editorconfig
+C:\training\SupportBank\obj\Debug\net5.0\SupportBank.AssemblyInfoInputs.cache
+C:\training\SupportBank\obj\Debug\net5.0\SupportBank.AssemblyInfo.cs
+C:\training\SupportBank\obj\Debug\net5.0\SupportBank.csproj.CoreCompileInputs.cache
+C:\training\SupportBank\bin\Debug\net5.0\SupportBank.exe
+C:\training\SupportBank\bin\Debug\net5.0\SupportBank.deps.json
+C:\training\SupportBank\bin\Debug\net5.0\SupportBank.runtimeconfig.json
+C:\training\SupportBank\bin\Debug\net5.0\SupportBank.runtimeconfig.dev.json
+C:\training\SupportBank\bin\Debug\net5.0\SupportBank.dll
+C:\training\SupportBank\bin\Debug\net5.0\ref\SupportBank.dll
+C:\training\SupportBank\bin\Debug\net5.0\SupportBank.pdb
+C:\training\SupportBank\obj\Debug\net5.0\SupportBank.dll
+C:\training\SupportBank\obj\Debug\net5.0\ref\SupportBank.dll
+C:\training\SupportBank\obj\Debug\net5.0\SupportBank.pdb
+C:\training\SupportBank\obj\Debug\net5.0\SupportBank.genruntimeconfig.cache

@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "utbuzVznzdbERvk6OcLFw4sm5UgmSNihPNPrUH/I6PqIQxYhJAuhYnasE7/JBkmp36Uph2hQgZQ5Omzax9fwCA==",
+  "dgSpecHash": "QqEgyvJnF2XgwvvXlNtnFuDlXB9FYh5rv3y66sckBo++hOgvTc2OKlp09Z3fYzvtFIVQ0dMqSE8Y4muCi9asVw==",
   "success": true,
   "projectFilePath": "C:\\training\\SupportBank\\SupportBank.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\maraza\\.nuget\\packages\\json.net\\1.0.25\\json.net.1.0.25.nupkg.sha512",
+    "C:\\Users\\maraza\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\maraza\\.nuget\\packages\\nlog\\4.7.7\\nlog.4.7.7.nupkg.sha512"
   ],
   "logs": []

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "YoerkeI7mluWDkBPIWtM3hNWZN+tLma9VOuq3gxOGvFVBOeNBVYX4aJ6mYXAgcyBNfgsKXlRQlLOfkTGZjCdUQ==",
+  "dgSpecHash": "utbuzVznzdbERvk6OcLFw4sm5UgmSNihPNPrUH/I6PqIQxYhJAuhYnasE7/JBkmp36Uph2hQgZQ5Omzax9fwCA==",
   "success": true,
   "projectFilePath": "C:\\training\\SupportBank\\SupportBank.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\maraza\\.nuget\\packages\\nlog\\4.7.7\\nlog.4.7.7.nupkg.sha512"
+  ],
   "logs": []
 }

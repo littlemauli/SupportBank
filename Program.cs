@@ -20,66 +20,81 @@ namespace SupportBank
             LogManager.Configuration = config;
             Logger.Info("The program has started");
 
-            string path = @"C:\Training\SupportBank\Transactions2014.csv";
+            string path = @"C:\Training\SupportBank\support-bank-resources-master\DodgyTransactions2015.csv";
 
-           
+
             if (!File.Exists(path))
             {
-                Logger.Fatal("Could not find file at " +path);
+                Logger.Fatal("Could not find file at " + path);
                 return;
             }
 
-            throw new Exception("Bad stuff happened");
-            Console.WriteLine("What account do you want?");
-            string PersonName = Console.ReadLine();
-
-            // Open the file to read from.
             var transactions = ReadCSV(path);
             var accountlist = new List<Account>();
-            foreach (var transaction in transactions)
+            string PersonName = "";
+
+            while (String.IsNullOrEmpty(PersonName))
             {
-                var accountMatchingName =
-                    accountlist
-                        .Where(x => x.Name == transaction.FromName)
-                        .ToList();
-                if (accountMatchingName.Count > 0)
+                Console.WriteLine("What account do you want?");
+                var userInput = Console.ReadLine();
+
+                foreach (var transaction in transactions)
                 {
-                    var account = accountMatchingName[0];
-                    account.IncomingTransactions.Add(transaction);
-                }
-                else
-                {
-                    accountlist
-                        .Add(new Account
-                        {
-                            Name = transaction.FromName,
-                            IncomingTransactions =
-                                new List<Transaction> { transaction },
-                            OutgoingTransactions = new List<Transaction>()
-                        });
+                    var accountMatchingName =
+                        accountlist
+                            .Where(x => x.Name == transaction.FromName)
+                            .ToList();
+                    if (accountMatchingName.Count > 0)
+                    {
+                        var account = accountMatchingName[0];
+                        account.IncomingTransactions.Add(transaction);
+                    }
+                    else
+                    {
+                        accountlist
+                            .Add(new Account
+                            {
+                                Name = transaction.FromName,
+                                IncomingTransactions =
+                                    new List<Transaction> { transaction },
+                                OutgoingTransactions = new List<Transaction>()
+                            });
+                    }
+
+                    var accountMatchingName2 =
+                        accountlist
+                            .Where(x => x.Name == transaction.ToName)
+                            .ToList();
+                    if (accountMatchingName2.Count > 0)
+                    {
+                        var account = accountMatchingName2[0];
+                        account.OutgoingTransactions.Add(transaction);
+                    }
+                    else
+                    {
+                        accountlist
+                            .Add(new Account
+                            {
+                                Name = transaction.ToName,
+                                IncomingTransactions = new List<Transaction>(),
+                                OutgoingTransactions =
+                                    new List<Transaction> { transaction }
+                            });
+                    }
                 }
 
-                var accountMatchingName2 =
-                    accountlist
-                        .Where(x => x.Name == transaction.ToName)
-                        .ToList();
-                if (accountMatchingName2.Count > 0)
+                if (accountlist.Exists(x => x.Name == userInput))
                 {
-                    var account = accountMatchingName2[0];
-                    account.OutgoingTransactions.Add(transaction);
+                    PersonName = userInput;
                 }
                 else
                 {
-                    accountlist
-                        .Add(new Account
-                        {
-                            Name = transaction.ToName,
-                            IncomingTransactions = new List<Transaction>(),
-                            OutgoingTransactions =
-                                new List<Transaction> { transaction }
-                        });
+                    Console.WriteLine("invalid name - please try entering a different name");
+                    Logger.Info("the user did enter an invalid name");
                 }
+
             }
+
             foreach (var account in accountlist)
             {
                 if (account.Name == PersonName)
@@ -127,20 +142,44 @@ namespace SupportBank
         public static List<Transaction> ReadCSV(string path)
         {
             var allTransactions = new List<Transaction>();
-            string[] readText;
+            string[] readText= null;
             try
-            { 
+            {
                 readText = File.ReadAllLines(path).Skip(1).ToArray();
             }
             catch (System.Exception e)
             {
-                Logger.Error(e, "error reading file at"+ path);
-                throw e;
+                Logger.Error(e, "error reading file at" + path);
+               
             }
-            
+
             foreach (string line in readText)
             {
                 var values = line.Split(',');
+
+
+                try
+                {
+                    var date = DateTime.Parse(values[0]);
+                }
+                catch (System.Exception e)
+                {
+                    Console.WriteLine("Invalid date in file" + path);
+                    Logger.Error(e, "bad date format entered by user in " + path);
+                    continue;
+                }
+
+                try
+                {
+                    var amount = Convert.ToDecimal(values[4]);
+                }
+                catch (System.Exception e)
+                {
+                    Console.WriteLine("Invalide amount in file " + path);
+                    Logger.Error(e, "bad amount format entered by user in" + path);
+                    continue;
+                }
+
 
                 var transaction =
                     new Transaction
@@ -150,6 +189,7 @@ namespace SupportBank
                         Narrative = values[3],
                         Amount = Convert.ToDecimal(values[4]),
                         Date = DateTime.Parse(values[0])
+
                     };
                 allTransactions.Add(transaction);
             }
